@@ -1,0 +1,35 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<div style="float: left; width: 50%">
+  <button style="float: left" (click)="getRssFeedDataGadgets360()">
+    Get Gadgets360 News
+  </button>
+  <div *ngIf="feeds">
+    <button *ngFor="let feed of feeds" (click)="getDataFromFeed(feed.id)">{{feed.title}}</button>
+  </div>
+  <h5 *ngIf="!RssData || !RssData.rss.channel[0]">There is an error while getting xml</h5>
+  <div *ngIf="RssData">
+    <h2>
+      {{RssData?.rss.channel[0].title[0]}}
+    </h2>
+    Total Item: {{RssData?.rss.channel[0].item.length}}
+    <ul>
+      <li *ngFor="let o of RssData?.rss.channel[0].item"><a href="{{o.link[0]}}">{{o.title[0]}}</a></li>
+    </ul>
+  </div>
+</div>
+<router-outlet></router-outlet>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+

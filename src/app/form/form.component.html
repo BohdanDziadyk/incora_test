@@ -1,0 +1,36 @@
+<div>
+  <form [formGroup]="createForm">
+    <div>
+      <input [formControl]="title">
+    </div>
+    <div>
+      <input [formControl]="url">
+    </div>
+    <div>
+      <button type="submit" (click)="createCustomFeed(createForm)">Create feed</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="feeds">
+  <p *ngFor="let feed of feeds">{{feed.title}}
+  <button (click)="showEditForm(feed.id)">Edit feed</button>
+  <button (click)="deleteCustomFeed(feed.id)">Delete feed</button>
+  </p>
+</div>
+<div *ngIf="getEditFormFlag()">
+  <form [formGroup]="editForm">
+    <div>
+      <input [formControl]="editTitle">
+    </div>
+    <div>
+      <input [formControl]="editUrl">
+    </div>
+    <div>
+      <button type="submit" (click)="editCustomFeed(editForm)">Edit feed</button>
+    </div>
+    <div>
+      <button type="submit" (click)="this.showEditFormFlag = !this.showEditFormFlag">Cancel</button>
+    </div>
+  </form>
+</div>
+<button (click)="logOut()">Log Out</button>
