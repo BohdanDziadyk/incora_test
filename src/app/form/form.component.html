@@ -1,36 +1,47 @@
-<div>
-  <form [formGroup]="createForm">
-    <div>
-      <input [formControl]="title">
-    </div>
-    <div>
-      <input [formControl]="url">
-    </div>
-    <div>
-      <button type="submit" (click)="createCustomFeed(createForm)">Create feed</button>
-    </div>
-  </form>
+<div style="offset: 50%">
+  <div style="display: flex; justify-content: space-between">
+    <h5>Feed adding form:</h5>
+    <button (click)="logOut()">Log Out</button></div>
+  <div>
+    <form [formGroup]="createForm">
+      <div>
+        <label>Title:</label>
+        <input [formControl]="title">
+        <small *ngIf="!createForm.controls.title.valid&&createForm.touched">This field is required</small>
+      </div>
+      <div>
+        <label>Feed URL:</label>
+        <input [formControl]="url">
+        <small *ngIf="!createForm.controls.url.valid&&createForm.touched">This field is required</small>
+      </div>
+      <div>
+        <button [disabled]="!createForm.valid" type="submit" (click)="createCustomFeed(createForm)">Create feed</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="feeds">
+    <p *ngFor="let feed of feeds">{{feed.title}}
+    <button (click)="showEditForm(feed.id)">Edit feed</button>
+    <button (click)="deleteCustomFeed(feed.id)">Delete feed</button>
+    </p>
+  </div>
+  <div *ngIf="getEditFormFlag()">
+    <h5>Feed editing form:</h5>
+    <form [formGroup]="editForm">
+      <div>
+        <label>Title:</label>
+        <input [formControl]="editTitle">
+      </div>
+      <div>
+        <label>Feed URL:</label>
+        <input [formControl]="editUrl">
+      </div>
+      <div>
+        <button type="submit" (click)="editCustomFeed(editForm)">Edit feed</button>
+      </div>
+      <div>
+        <button type="submit" (click)="this.showEditFormFlag = !this.showEditFormFlag">Cancel</button>
+      </div>
+    </form>
+  </div>
 </div>
-<div *ngIf="feeds">
-  <p *ngFor="let feed of feeds">{{feed.title}}
-  <button (click)="showEditForm(feed.id)">Edit feed</button>
-  <button (click)="deleteCustomFeed(feed.id)">Delete feed</button>
-  </p>
-</div>
-<div *ngIf="getEditFormFlag()">
-  <form [formGroup]="editForm">
-    <div>
-      <input [formControl]="editTitle">
-    </div>
-    <div>
-      <input [formControl]="editUrl">
-    </div>
-    <div>
-      <button type="submit" (click)="editCustomFeed(editForm)">Edit feed</button>
-    </div>
-    <div>
-      <button type="submit" (click)="this.showEditFormFlag = !this.showEditFormFlag">Cancel</button>
-    </div>
-  </form>
-</div>
-<button (click)="logOut()">Log Out</button>

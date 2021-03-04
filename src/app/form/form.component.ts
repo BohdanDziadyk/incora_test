@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FeedService} from '../services/feed.service';
 import {Feed} from '../models/Feed';
 import {Router} from '@angular/router';
@@ -11,8 +11,8 @@ import {Router} from '@angular/router';
 })
 export class FormComponent implements OnInit {
   createForm: FormGroup
-  title: FormControl = new FormControl('')
-  url: FormControl = new FormControl('')
+  title: FormControl = new FormControl('',  [Validators.required])
+  url: FormControl = new FormControl('', [Validators.required])
   editForm: FormGroup
   editTitle: FormControl = new FormControl('')
   editUrl: FormControl = new FormControl('')
