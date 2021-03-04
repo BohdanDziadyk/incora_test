@@ -11,31 +11,47 @@ import {error} from '@angular/compiler/src/util';
 })
 export class AppComponent implements OnInit{
   title = 'incora_test'
-  RssData: NewsRss;
-  FeedData: NewsFeed;
+  rssData: NewsRss;
+  feedData: NewsFeed;
   feeds: Feed[]
   constructor(private feedService: FeedService) {}
   getRssFeedDataGadgets360() {
     this.feedService.getRssGadgets360().subscribe(value => {
         let parseString = xml2js.parseString;
       parseString(value, (err, result: NewsRss) => {
-          this.RssData = result;
+          this.rssData = result;
+        });
+      });
+  }
+  getRssFeedDataXiaomi() {
+    this.feedService.getRssXiaomi().subscribe(value => {
+        let parseString = xml2js.parseString;
+      parseString(value, (err, result: NewsRss) => {
+          this.rssData = result;
+        });
+      });
+  }
+  getRssFeedDataMWW() {
+    this.feedService.getRssMWW().subscribe(value => {
+        let parseString = xml2js.parseString;
+      parseString(value, (err, result: NewsRss) => {
+          this.rssData = result;
         });
       });
   }
   getDataFromFeed(id){
-    this.RssData = null;
-    this.FeedData = null;
+    this.rssData = null;
+    this.feedData = null;
     this.feedService.getXmlFromFeed(id).subscribe(value => {
         let parseString = xml2js.parseString;
         console.log(parseString);
         parseString(value, (err, result: NewsRss) => {
           if (result.rss){
-            this.RssData = result;
+            this.rssData = result;
           }
           else {
             parseString(value, (err, result: NewsFeed) =>{
-              this.FeedData = result;
+              this.feedData = result;
             })
           }
         });

@@ -9,30 +9,36 @@
   <button style="float: left" (click)="getRssFeedDataGadgets360()">
     Get Gadgets360 News
   </button>
+  <button style="float: left" (click)="getRssFeedDataXiaomi()">
+    Get Xiaomi News
+  </button>
+  <button style="float: left" (click)="getRssFeedDataMWW()">
+    Get MWW News
+  </button>
   <div *ngIf="feeds">
     <button *ngFor="let feed of feeds" (click)="getDataFromFeed(feed.id)">{{feed.title}}</button>
   </div>
-  <h5 *ngIf="!RssData&&!FeedData">There is an error while getting xml</h5>
+  <h5 *ngIf="!rssData&&!feedData">There is an error while getting xml</h5>
 <!--  <h5 *ngIf="!FeedData.feed.channel">There is an error while getting feed</h5>-->
-  <div *ngIf="RssData && !FeedData">
+  <div *ngIf="rssData && !feedData">
     <h2>
-      {{RssData?.rss.channel[0].title[0]}}
+      {{rssData?.rss.channel[0].title[0]}}
     </h2>
-    Total Item: {{RssData?.rss.channel[0].item.length}}
+    Total Item: {{rssData?.rss.channel[0].item.length}}
     <ul>
-      <li *ngFor="let rss of RssData?.rss.channel[0].item"><a href="{{rss.link[0]}}">{{rss.title[0]}}</a></li>
+      <li *ngFor="let rss of rssData?.rss.channel[0].item"><a href="{{rss.link[0]}}">{{rss.title[0]}}</a></li>
     </ul>
   </div>
-  <div *ngIf="FeedData">
+  <div *ngIf="feedData">
   <h2>
-    {{ FeedData.feed?.title}}
+    {{ feedData.feed?.title}}
   </h2>
   <p>
     Total Item:
-    {{ FeedData.feed?.entry.length}}
+    {{ feedData.feed?.entry.length}}
   </p>
   <ul>
-    <li *ngFor="let feed of FeedData.feed?.entry"><a href="{{feed.link[0].$.href}}" target="_blank">{{feed.title[0]}}</a></li>
+    <li *ngFor="let feed of feedData.feed?.entry"><a href="{{feed.link[0].$.href}}" target="_blank">{{feed.title[0]}}</a></li>
   </ul>
 </div>
 </div>

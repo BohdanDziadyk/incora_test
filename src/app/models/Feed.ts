@@ -4,32 +4,32 @@ export interface Feed{
   url: string;
 }
 export interface NewsRss {
-  rss: IRssObject;
+  rss: RssObject;
 }
 
-export interface IRssObject {
+export interface RssObject {
   $: any;
-  channel: Array<IRssChannel>;
+  channel: Array<RssChannel>;
 }
 
-export interface IRssChannel {
+export interface RssChannel {
   "atom:link": Array<string>;
   description: Array<string>;
-  image: Array<IRssImage>;
-  item: Array<IRssItem>;
+  image: Array<RssImage>;
+  item: Array<RssItem>;
   language: Array<string>;
   lastBuildDate: Date;
   link: Array<string>;
   title: Array<string>;
 }
 
-export interface IRssImage {
+export interface RssImage {
   link: Array<string>;
   title: Array<string>;
   url: Array<string>;
 }
 
-export interface IRssItem {
+export interface RssItem {
   category: Array<string>;
   description: Array<string>;
   guid: any;
@@ -38,10 +38,10 @@ export interface IRssItem {
   title: Array<string>;
 }
 export interface NewsFeed {
-  feed?: IRssObject;
+  feed?: RssObject;
 }
 
-export interface IRssObject {
+export interface RssObject {
   $: any;
   category: Array<object>;
   entry: Array<NewItem>;

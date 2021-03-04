@@ -16,6 +16,12 @@ export class FeedService {
   getRssGadgets360(): Observable<any>{
     return this.httpClient.get<any>("https://gadgets.ndtv.com/rss/feeds", this.requestOptions)
   }
+  getRssXiaomi(): Observable<any>{
+    return this.httpClient.get<any>("https://blog.mi.com/en/feed", this.requestOptions)
+  }
+  getRssMWW(): Observable<any>{
+    return this.httpClient.get<any>("https://www.mobileworldlive.com/latest-stories/feed/", this.requestOptions)
+  }
   getCustomFeeds():Observable<Feed[]>{
     return this.httpClient.get<Feed[]>('http://localhost:8000/feeds/')
   }
